@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.converter {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Temperature Converter</h1>
+    </header>
+    <section>
+        <div class="converter">
+            <h2>Convert Temperature</h2>
+            <label for="celsius">Celsius:</label>
+            <input type="number" id="celsius" placeholder="Enter Celsius" oninput="convertFromCelsius()">
+            <label for="fahrenheit">Fahrenheit:</label>
+            <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit" oninput="convertFromFahrenheit()">
+            <label for="kelvin">Kelvin:</label>
+            <input type="number" id="kelvin" placeholder="Enter Kelvin" oninput="convertFromKelvin()">
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2023 Temperature Converter</p>
+    </footer>
+    <script>
+      function convertFromCelsius() {
+    let celsius = parseFloat(document.getElementById('celsius').value);
+    if (!isNaN(celsius)) {
+        let fahrenheit = (celsius * 9/5) + 32;
+        let kelvin = celsius + 273.15;
+        document.getElementById('fahrenheit').value = fahrenheit.toFixed(2);
+        document.getElementById('kelvin').value = kelvin.toFixed(2);
+    } else {
+        document.getElementById('fahrenheit').value = '';
+        document.getElementById('kelvin').value = '';
+    }
+}
+
+function convertFromFahrenheit() {
+    let fahrenheit = parseFloat(document.getElementById('fahrenheit').value);
+    if (!isNaN(fahrenheit)) {
+        let celsius = (fahrenheit - 32) * 5/9;
+        let kelvin = celsius + 273.15;
+        document.getElementById('celsius').value = celsius.toFixed(2);
+        document.getElementById('kelvin').value = kelvin.toFixed(2);
+    } else {
+        document.getElementById('celsius').value = '';
+        document.getElementById('kelvin').value = '';
+    }
+}
+
+function convertFromKelvin() {
+    let kelvin = parseFloat(document.getElementById('kelvin').value);
+    if (!isNaN(kelvin)) {
+        let celsius = kelvin - 273.15;
+        let fahrenheit = (celsius * 9/5) + 32;
+        document.getElementById('celsius').value = celsius.toFixed(2);
+        document.getElementById('fahrenheit').value = fahrenheit.toFixed(2);
+    } else {
+        document.getElementById('celsius').value = '';
+        document.getElementById('fahrenheit').value = '';
+    }
+}
+
+    </script>
+</body>
+</html>
